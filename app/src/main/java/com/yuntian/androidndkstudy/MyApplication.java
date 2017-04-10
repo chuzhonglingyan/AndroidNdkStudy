@@ -2,10 +2,11 @@ package com.yuntian.androidndkstudy;
 
 import android.app.Application;
 
-/**
- * Created by Administrator on 2017/3/30.
- */
 
+/**
+ * description Application类.
+ * Created by ChuYingYan on 2017/4/10.
+ */
 public class MyApplication extends Application {
 
     @Override

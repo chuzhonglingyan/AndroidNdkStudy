@@ -1,6 +1,6 @@
 //
 // Created by Administrator on 2017/3/30.
-//
+// Log日志
 
 #ifndef _ANDROID_LOG_PRINT_H_
 #define _ANDROID_LOG_PRINT_H_

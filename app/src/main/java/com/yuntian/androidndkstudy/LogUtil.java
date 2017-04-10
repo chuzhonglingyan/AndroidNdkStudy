@@ -2,17 +2,12 @@ package com.yuntian.androidndkstudy;
 
 
 /**
- * @author guangleilei
- * @version 1.0 2016-08-05
+ * description log打印类.
+ * Created by ChuYingYan on 2017/4/10.
  */
 public final class LogUtil {
-    /**
-     * isPrint: print switch, true will print. false not print
-     */
-    public static boolean isPrint = BuildConfig.DEBUG;
-    // TODO BuildConfig.DEBUG always false when building library projects with gradle  by Seul
-    // public static boolean isPrint = BuildConfig.DEBUG;
 
+    public static boolean isPrint = BuildConfig.DEBUG;
     private static String defaultTag = "Log";
 
     private LogUtil() {
@@ -30,9 +25,7 @@ public final class LogUtil {
         return isPrint && m != null ? android.util.Log.i(defaultTag, m) : -1;
     }
 
-    /**
-     * ******************** Log **************************
-     */
+
     public static int v(String tag, String msg) {
         return isPrint && msg != null ? android.util.Log.v(tag, msg) : -1;
     }
