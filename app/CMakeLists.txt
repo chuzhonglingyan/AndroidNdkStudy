@@ -11,16 +11,16 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 #定义变量ProjectRoot为工程根目录，用相对路径没通过编译，可能是路径写错，以后再试
 #本次使用绝对路径作为参数
-set(ProjectRoot F:/IT/android/androidwork/testjni/AndroidNdkStudy)
+set(ProjectRoot ${CMAKE_SOURCE_DIR})
 
-include_directories(${ProjectRoot}/app/include)
+include_directories(${ProjectRoot}/include)
 
 
 #动态方式加载 libcrypto是libxxxx.so的xxxx部分
 add_library(libcrypto SHARED IMPORTED)
 
 #设置要连接的so的相对路径，${ANDROID_ABI}表示so文件的ABI类型的路径,这一步引入了动态加入编译的so
-set_target_properties(libcrypto  PROPERTIES IMPORTED_LOCATION ${ProjectRoot}/app/libs/${ANDROID_ABI}/libcrypto.so)
+set_target_properties(libcrypto  PROPERTIES IMPORTED_LOCATION ${ProjectRoot}/libs/${ANDROID_ABI}/libcrypto.so)
 
 
 
