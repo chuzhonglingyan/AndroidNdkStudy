@@ -38,7 +38,7 @@ public class NativeUtil {
 
 
     public static void init(){
-        LogUtil.d(TAG,"NativeUtil 初始化完成");
+        ALog.d("NativeUtil 初始化完成");
     };
 
 }

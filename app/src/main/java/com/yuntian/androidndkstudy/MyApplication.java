@@ -14,5 +14,7 @@ public class MyApplication extends Application {
         super.onCreate();
         NativeUtil.init();
         AppContext.init(this);
+        new ALog.Builder(this)
+                .setLogSwitch(BuildConfig.DEBUG);// 设置log总开关，默认开
     }
 }

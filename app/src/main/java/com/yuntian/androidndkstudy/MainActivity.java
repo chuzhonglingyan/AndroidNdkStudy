@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.tv_encode: //java数组传到C层改变，返回到java层输出
                 NativeUtil.encodeArray(array);
-                LogUtil.d(TAG,""+ Arrays.toString(array));
+                ALog.d(Arrays.toString(array));
                 break;
             case R.id.tv_rand:  //调用opensll的随机数方法
                 ToastUtils.showShortToast(Base64.encodeToString(NativeUtil.getRandom(), Base64.DEFAULT));
-                LogUtil.d(TAG,""+Base64.encodeToString(NativeUtil.getRandom(), Base64.DEFAULT));
+                ALog.d(Base64.encodeToString(NativeUtil.getRandom(), Base64.DEFAULT));
                 break;
         }
     }
