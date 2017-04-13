@@ -14,6 +14,15 @@
 
 extern "C" {
 
+jmethodID MID_AccessCache_show; //缓存方法id
+
+JNIEXPORT void JNICALL
+initIDs(JNIEnv *env, jclass cls)
+{
+    LOGD("initIDs called!!!\n");
+    MID_AccessCache_show = env->GetStaticMethodID(cls,"show","(I)V");
+}
+
 JNIEXPORT jstring JNICALL
 Java_com_yuntian_androidndkstudy_NativeUtil_staticJNIRegister(JNIEnv *env, jclass type,
                                                               jstring str_) {
@@ -67,25 +76,12 @@ JNIEXPORT void  JNICALL
 startMonitor(JNIEnv *env, jclass type) {
     monitor = 1;
     int pressure;
-    jclass clazz;
-    jmethodID methodid;
-    const char *kClassName = "com/yuntian/androidndkstudy/MainActivity";//指定要注册的类
-    clazz = env->FindClass(kClassName);
-    if (clazz == NULL) {
-        LOGD("clazz IS NULL................");
-        return;
-    }
-    methodid = env->GetStaticMethodID(clazz, "show", "(I)V");
-    if (methodid == NULL) {
-        LOGD("methodid IS NULL................");
-        return;
-    }
     while (monitor) {
         //本地方法获取传感器数据
         pressure = getPressure();
         LOGD("%d", pressure);
         //使用反射调用java方法刷新界面显示
-        env->CallStaticVoidMethod(clazz, methodid, pressure);
+        env->CallStaticVoidMethod(type, MID_AccessCache_show,pressure);
         sleep(1);
     }
 }
@@ -115,7 +111,8 @@ static JNINativeMethod methods[] = {
         {"startMonitor", "()V", (void*)startMonitor},
         {"stopMonitor", "()V", (void*)stopMonitor},
         {"encodeArray", "([I)V", (void*)encodeArray},
-        {"getRandom","()[B", (void*)getRandom}
+        {"getRandom","()[B", (void*)getRandom},
+        {"initIDs","()V", (void*)initIDs}
         //Java中native方法的名称，不用携带包的路径    方法签名 参数类型+返回类型  JNI层对应函数的函数指针，注意它是void*类型
         // 这里可以有很多其他映射函数
 };
