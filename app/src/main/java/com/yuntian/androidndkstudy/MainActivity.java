@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     int[] array = {1,2,3,4,5};
 
-    private static  long startTime3 =0;  //開始時間
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 ALog.d(String.valueOf(consumingTime2)+"毫秒");
                 break;
             case R.id.tv_start: //开始线程
-                startTime3= System.nanoTime();  //開始時間
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -88,14 +86,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    public static void show(final int pressure) {
-        EventBus.getDefault().post(new MessageEvent<String>("pressure",String.valueOf(pressure)));
-        Log.d(TAG, "show: " + pressure);
-        double consumingTime3 = (double) (System.nanoTime()-startTime3)/100000; //消耗時間
-        ALog.d(String.valueOf(consumingTime3)+"毫秒");
-        startTime3=System.nanoTime();
-    }
 
 
     @Subscribe(threadMode = ThreadMode.MainThread)
